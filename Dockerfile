@@ -5,14 +5,13 @@ ARG WITH_PLUGINS=true
 
 # Copy files necessary installation
 COPY requirements.txt requirements.txt
+COPY requirements-plugins.txt requirements-plugins.txt
 
 # Perform mkdocs-material installation
 RUN pip install --no-cache-dir -r requirements.txt \
   && \
     if [ "${WITH_PLUGINS}" = "true" ]; then \
-      pip install --no-cache-dir \
-        "mkdocs-minify-plugin>=0.3" \
-        "mkdocs-redirects>=1.0"; \
+      pip install --no-cache-dir -r requirements-plugins.txt; \
     fi
 
 # Set working directory
