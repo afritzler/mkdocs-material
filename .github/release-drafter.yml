@@ -49,3 +49,13 @@ autolabeler:
 template: |
   ## Changes
   $CHANGES
+
+  ## Usage
+  To pull the image run
+  ```bash
+  docker pull ghcr.io/afritzler/mkdocs-material:$RESOLVED_VERSION
+  ```
+  Using the image as a base image in your Dockerfile
+  ```
+  FROM ghcr.io/afritzler/mkdocs-material:$RESOLVED_VERSION
+  ```
