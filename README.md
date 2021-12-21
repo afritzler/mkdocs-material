@@ -4,7 +4,7 @@
 
 Wrapper project to build `linux/amd64`, `linux/arm64` and `linux/arm/v7` Docker images of [mkdocs-material](https://github.com/squidfunk/mkdocs-material).
 
-Please refer to the official [documentation](https://squidfunk.github.io/mkdocs-material/) for further information.
+Please refer to the official [Material for MkDocs documentation](https://squidfunk.github.io/mkdocs-material/getting-started/?h=arm64#with-docker) for further information.
 
 ## Usage
 
