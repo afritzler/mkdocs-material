@@ -1,0 +1,31 @@
+### 1. Docker build stage: Create MkDocs binary
+FROM squidfunk/mkdocs-material:8.1.3 as source
+
+# Install PyInstaller and required tools
+RUN apk add binutils upx
+RUN pip install --upgrade pip # As time of writing, installed pip v21.0.1 does not work, upgraded v21.3.1 does
+RUN pip install pyinstaller
+
+# Create MkDocs binary inluding material theme
+WORKDIR /tmp
+RUN pyinstaller --recursive-copy-metadata mkdocs --collect-all mkdocs \
+  --copy-metadata mkdocs-material --collect-all material --name mkdocs-material \
+  $(pip show mkdocs | grep Location | sed -e 's/^Location: //')/mkdocs/__main__.py
+
+
+### Final Docker image: Serving MkDocs binary
+FROM alpine
+
+COPY --from=source /tmp/dist/mkdocs-material /opt/mkdocs-material
+RUN ln -s /opt/mkdocs-material/mkdocs-material /usr/local/bin/mkdocs
+
+# Required for "Publishing your site" to GitHub Pages,
+# see https://squidfunk.github.io/mkdocs-material/publishing-your-site/#with-mkdocs
+RUN apk add --no-cache git git-fast-import openssh
+
+WORKDIR /docs
+
+# Start development server by default
+EXPOSE 8000
+ENTRYPOINT ["mkdocs"]
+CMD ["serve", "--dev-addr=0.0.0.0:8000"]
