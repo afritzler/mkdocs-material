@@ -1,4 +1,4 @@
-FROM python:3.10.0-alpine3.13
+FROM python:3.10.4-alpine3.15
 
 # Build-time flags
 ARG WITH_PLUGINS=true
