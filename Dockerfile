@@ -7,6 +7,9 @@ ARG WITH_PLUGINS=true
 COPY requirements.txt requirements.txt
 COPY requirements-plugins.txt requirements-plugins.txt
 
+# Needed for native module builds
+RUN apk add build-base
+
 # Perform mkdocs-material installation
 RUN pip install --no-cache-dir -r requirements.txt \
   && \
