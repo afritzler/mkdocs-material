@@ -1,3 +1,13 @@
+# ⚠️ Deprecation Warning
+
+As of version 9.1 the official [Mkdocs Material image ](https://hub.docker.com/r/squidfunk/mkdocs-material) has support for multi arch images.
+
+```
+docker pull squidfunk/mkdocs-material:latest
+```
+
+This project is now archived and there won't be any new releases in the future.
+
 # mkdocs-material
 
 [![Publish Image](https://github.com/afritzler/mkdocs-material/actions/workflows/publish-docker.yml/badge.svg)](https://github.com/afritzler/mkdocs-material/actions/workflows/publish-docker.yml)
